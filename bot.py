@@ -1,5 +1,5 @@
 """
-AZAMOV ACADEMY — Ro'yxatdan o'tish Telegram boti
+BAXMAL O'QUV MARKAZI IT YO'NALISHI TO'GARAGI — Ro'yxatdan o'tish Telegram boti
 =================================================
 
 Oqim:
@@ -92,7 +92,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await asyncio.sleep(0.5)
 
     await update.message.reply_text(
-        "🎓✨ <b>AZAMOV ACADEMY</b> ga xush kelibsiz!\n\n"
+        "🎓✨ <b>BAXMAL O'QUV MARKAZI — IT yo'nalishi to'garagi</b>ga xush kelibsiz!\n\n"
         "Kelajagingizni IT bilan quring! 🚀\n\n"
         "Ro'yxatdan o'tish uchun bir nechta savolga javob bering.\n\n"
         "👇 Avval <b>ism va familiyangizni</b> yozing:",
