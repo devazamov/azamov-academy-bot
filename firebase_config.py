@@ -4,14 +4,25 @@ Barcha foydalanuvchilar, majburiy kanallar va sozlamalar shu yerda saqlanadi.
 """
 
 import os
+import json
 import firebase_admin
 from firebase_admin import credentials, firestore
 from datetime import datetime, timezone
 
 # --- Firebase ni ishga tushirish ---
-SERVICE_ACCOUNT_PATH = os.getenv("FIREBASE_SERVICE_ACCOUNT", "serviceAccountKey.json")
+# Ikki usuldan biri ishlatiladi:
+# 1) FIREBASE_SERVICE_ACCOUNT_JSON env-o'zgaruvchisi ichida to'liq JSON matni (Railway uchun qulay)
+# 2) FIREBASE_SERVICE_ACCOUNT env-o'zgaruvchisida ko'rsatilgan local fayl yo'li (lokal kompyuter uchun)
 
-cred = credentials.Certificate(SERVICE_ACCOUNT_PATH)
+raw_json = os.getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
+
+if raw_json:
+    cred_dict = json.loads(raw_json)
+    cred = credentials.Certificate(cred_dict)
+else:
+    service_account_path = os.getenv("FIREBASE_SERVICE_ACCOUNT", "serviceAccountKey.json")
+    cred = credentials.Certificate(service_account_path)
+
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
